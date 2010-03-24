@@ -1,0 +1,54 @@
+
+What happened to palmlink?
+
+  I got mail from Palm Inc. that PalmLink is violating their trademarks.
+  They asked me to change the name in order to protect their rights.
+
+  So I renamed palmlink to pdalink, and released it again.
+
+
+Is there anything new in this release?
+
+  Nothing except of the new name.
+
+
+What do I have to do as user?
+
+  Just install the pdalink.library to libs: and use pdatransfer and
+  pdatime from now on. If you have used ENVs, you have to rename them
+  according to the pdalink.guide .
+
+
+What do I have to do as developer?
+
+  You have to include the pdalink include files, and use the
+  "pdalink.library" instead of the "palmlink.library". Nothing happened
+  in the code or include files, so you don't need to do any more
+  migrations.
+
+  If you used the ARexx interface, you have to rename all PALM_...
+  invocations to PDA_... invocations.
+
+
+My Palm programs cannot find the palmlink.library any more. What can I
+do?
+
+  Please ask the programmer to migrate to the pdalink.library and
+  release a new version of his software.
+
+  If this is not possible, just use a hex editor, locate the string
+  "palmlink.library" in the program code, and change it to
+  "pdalink.library" with a trailing byte '0'.
+
+
+What happened to Palmiga?
+
+  Palmiga also violated Palm Inc trademarks. So it was renamed to
+  amiga-pda. You can find its home page here:
+
+    http://amigapda.shredzone.de
+
+
+I am sorry for the inconveniences, but I had to do this in order to avoid
+legal steps taken against me.
+
