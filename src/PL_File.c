@@ -1076,6 +1076,14 @@ __saveds __asm int PL_FileInstall
 #endif
   DLP_DeleteDB(socket,cardno,plfh->dbinfo.name);
 
+	 /* Judd - 25Nov99 - Graffiti hack We want to make sure that these 2
+	    flags get set for this one */
+
+  if(plfh->dbinfo.creator == MKTAG('g', 'r', 'a', 'f'))
+  {
+    tmpflags |= DLPDBIF_NEWER|DLPDBIF_RESET;
+  }
+
   /* Calculate the flags */
   tmpflags = plfh->dbinfo.flags;
   if(strcmp(plfh->dbinfo.name,"Graffiti ShortCuts")==0)

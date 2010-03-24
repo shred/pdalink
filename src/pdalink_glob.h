@@ -36,6 +36,7 @@
 //#define APIDEBUG                /* Debug: API */
 //#define DLPDEBUG                /* Debug: DLP */
 //#define FILEDEBUG               /* Debug: File */
+//#define NETSYNCDEBUG            /* Debug: NetSync */
 
 #include <clib/alib_protos.h>
 #include <clib/exec_protos.h>
@@ -57,7 +58,9 @@
 #include <rexx/errors.h>
 #include <dos/dos.h>
 #include <dos/dosasl.h>
+#include <string.h>
 
+#include "debug.h"
 #include "pdalink.h"
 #include "pdalink_private.h"
 
@@ -111,6 +114,11 @@ extern __saveds __asm LONG PL_SLPRead(register __a0 APTR socket, register __a1 A
 /*-- PL_PADP.c --*/
 extern __saveds __asm LONG PL_PADPWrite(register __a0 APTR socket, register __a1 APTR buffer, register __d0 LONG length, register __d1 UWORD type);
 extern __saveds __asm LONG PL_PADPRead(register __a0 APTR socket, register __a1 APTR buffer, register __d0 LONG length);
+
+/*-- PL_NetSync.c --*/
+extern __saveds __asm LONG PL_NetSyncWrite(register __a0 APTR socket, register __a1 APTR buffer, register __d0 LONG length, register __d1 UWORD type);
+extern __saveds __asm LONG PL_NetSyncRead(register __a0 APTR socket, register __a1 APTR buffer, register __d0 LONG length);
+extern BOOL PL_NetSyncServerRitual(struct PL_Socket *socket);
 
 /*-- PL_CMP.c --*/
 extern __saveds __asm int PL_CMPAbort(register __a0 APTR socket, register __d0 UBYTE reason);

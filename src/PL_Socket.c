@@ -176,6 +176,7 @@ __saveds __asm APTR PL_OpenSocket
   STRPTR defDevice;
   LONG   defUnit = 0;
   LONG   defMaxrate = DEFAULT_MAXRATE;
+  KPRINTF(10, ("OpenSocket\n"));
 
   /* Read env variables, if available */
   defDevice = GetEnvVar("PDALINK_DEVICE");
@@ -206,23 +207,28 @@ __saveds __asm APTR PL_OpenSocket
 
       if(OpenPalmSerial(sock,device,unit,9600))           // This is the default baud rate
       {
-        /* Find out the maximum baud rate */
-        for(tstbaud = rates; *tstbaud; tstbaud++)
+        if(!sock->serial->isUSB)
         {
-          if(*tstbaud > maxrate) continue;                // Higher than device's max rate?
-          if(!PL_RawSetRate(sock,*tstbaud)) continue;     // Check if the device is able to generate that rate
-          break;
-        }
-        if(*tstbaud)                                      // Found a rate
-        {
-          sock->maxRate = *tstbaud;
-#ifdef APIDEBUG
-          Printf("API OpenSocket: Device max rate is %ld\n",sock->maxRate);
-#endif
-          if(PL_RawSetRate(sock,9600))                    // For this time, go back to default rate to
-          {                                               // establish the connection
-            return(sock);                 /* <------- SUCCESS -------------- */
+          /* Find out the maximum baud rate */
+          for(tstbaud = rates; *tstbaud; tstbaud++)
+          {
+            if(*tstbaud > maxrate) continue;                // Higher than device's max rate?
+            if(!PL_RawSetRate(sock,*tstbaud)) continue;     // Check if the device is able to generate that rate
+            break;
           }
+          if(*tstbaud)                                      // Found a rate
+          {
+            sock->maxRate = *tstbaud;
+#ifdef APIDEBUG
+            Printf("API OpenSocket: Device max rate is %ld\n",sock->maxRate);
+#endif
+            if(PL_RawSetRate(sock,9600))                    // For this time, go back to default rate to
+            {                                               // establish the connection
+              return(sock);                 /* <------- SUCCESS -------------- */
+            }
+          }
+        } else {
+          return(sock);
         }
         sock->lastError = PLERR_BADBAUD;
         ClosePalmSerial(sock);
@@ -262,8 +268,14 @@ __saveds __asm int PL_Accept
   struct PL_CMP cmp;
   ULONG trycnt;
   ULONG tstbaud;
+  KPRINTF(10, ("Accept\n"));
 
   sock->lastError = PLERR_OKAY;             // No errors so far
+  if(sock->serial->isUSB)
+  {
+      PL_NetSyncServerRitual(sock);
+      return(TRUE);
+  }
   trycnt = (timeout / DEFAULT_TIMEOUT)+1;   // How many retries to fill out the timeout?
 
   /* Wait for CMP packet */
@@ -359,9 +371,13 @@ __saveds __asm int PL_Connect
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
   struct PL_CMP cmp;
+  KPRINTF(10, ("Connect\n"));
 
   sock->lastError = PLERR_OKAY;             // No errors so far
-
+  if(sock->serial->isUSB)
+  {
+      return(TRUE);
+  }
   /* Wake up remote */
   if(!PL_CMPWakeUp(socket,sock->maxRate))   // Try a wakeup
   {
@@ -425,6 +441,7 @@ __saveds __asm LONG PL_LastError
   register __a0 APTR socket
 )
 {
+  KPRINTF(10, ("LastError\n"));
   return(((struct PL_Socket *)socket)->lastError);
 }
 //<
@@ -447,6 +464,7 @@ __saveds __asm ULONG PL_GetBaudRate
 )
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
+  KPRINTF(10, ("GetBaudRate\n"));
   return sock->baudRate;
 }
 //<
@@ -473,7 +491,13 @@ __saveds __asm LONG PL_Read
   register __d0 LONG size
 )
 {
-  return PL_PADPRead(socket,buffer,size);
+  KPRINTF(10, ("Read\n"));
+  if(((struct PL_Socket *) socket)->serial->isUSB)
+  {
+    return PL_NetSyncRead(socket, buffer, size);
+  } else {
+    return PL_PADPRead(socket,buffer,size);
+  }
 }
 //<
 
@@ -499,7 +523,13 @@ __saveds __asm LONG PL_Write
   register __d0 LONG size
 )
 {
-  return PL_PADPWrite(socket,buffer,size,PLPADP_DATA);
+  KPRINTF(10, ("Write\n"));
+  if(((struct PL_Socket *) socket)->serial->isUSB)
+  {
+    return PL_NetSyncWrite(socket, buffer, size, PLPADP_DATA);
+  } else {
+    return PL_PADPWrite(socket,buffer,size,PLPADP_DATA);
+  }
 }
 //<
 
@@ -522,7 +552,13 @@ __saveds __asm LONG PL_Tickle
 )
 {
   UWORD dummy;
-  return PL_PADPWrite(socket,&dummy,0,PLPADP_TICKLE);
+  KPRINTF(10, ("Tickle\n"));
+  if(((struct PL_Socket *) socket)->serial->isUSB)
+  {
+    return(0);
+  } else {
+    return PL_PADPWrite(socket,&dummy,0,PLPADP_TICKLE);
+  }
 }
 //<
 
@@ -545,6 +581,7 @@ __saveds __asm void PL_CloseSocket
 )
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
+  KPRINTF(10, ("CloseSocket\n"));
   FreeMem(sock->dlpbuffer,65536);
   ClosePalmSerial(sock);                // Close connection
   FreeVec(sock);                        // Free socket
@@ -573,6 +610,7 @@ __saveds __asm void PL_Explain
 )
 {
   LONG negerr;
+  KPRINTF(10, ("Explain\n"));
 
   if(error < 0)
   {

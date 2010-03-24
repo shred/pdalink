@@ -58,8 +58,13 @@ __saveds __asm LONG PL_PADPWrite
   LONG  remain = length;          // bytes remaining to be sent
   LONG  offset = 0;
   LONG  plen;
+  KPRINTF(10, ("PADPWrite\n"));
 
   sock->lastError = PLERR_OKAY;
+  if(sock->serial->isUSB)
+  {
+      return(-1);
+  }
 
   /* Create transaction ID */
   if(type==PLPADP_WAKE)
@@ -213,8 +218,13 @@ __saveds __asm LONG PL_PADPRead
   LONG   gotoffset;
   LONG   remain = length;
   LONG   read;
+  KPRINTF(10, ("PADPRead\n"));
 
   sock->lastError = PLERR_OKAY;
+  if(sock->serial->isUSB)
+  {
+      return(-1);
+  }
 
   /* Create transaction ID */
   if(sock->initiator)

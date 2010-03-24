@@ -30,7 +30,7 @@ OBJP      = objects/
 EXE       = libs:pdalink.library
 OBJS      = $(OBJP)PL_Lib.o $(OBJP)PL_Init.o $(OBJP)PL_Socket.o $(OBJP)PL_Serial.o\
             $(OBJP)PL_SLP.o $(OBJP)PL_PADP.o $(OBJP)PL_CMP.o $(OBJP)PL_DLP.o\
-            $(OBJP)PL_File.o $(OBJP)PL_ARexx.o
+            $(OBJP)PL_File.o $(OBJP)PL_ARexx.o $(OBJP)PL_NetSync.o $(OBJP)debug.o
 
 INCS      = pdalink_glob.h pdalink_private.h pdalink.h
 
@@ -50,7 +50,7 @@ SOPTS     = CPU=68060 OPT
 #-- compiler commands --
 LIBS      = lib:amiga.lib lib:sc.lib
 COPTS     = NOLINK STRIPDBG NOSTACKCHECK PARM=R DATA=NEAR OBJECTNAME=$(OBJP) GST=INCLUDE:all.gst STRMER $(SOPTS)
-AOPTS     = ERRORS=0 OPT=NRQLPS NOEXE TO $(OBJP)
+AOPTS     = INCPATH=Include: ERRORS=0 OPT=NRQLPS NOEXE TO $(OBJP)
 #LOPTS     = SC SD NOICONS $(DBGOPTS) LIB $(LIBS)
 LOPTS     = B SC SD
 
@@ -95,6 +95,12 @@ $(OBJP)PL_File.o                : PL_File.c $(INCS)
         sc $(COPTS) $*.c
 
 $(OBJP)PL_ARexx.o               : PL_ARexx.c $(INCS)
+        sc $(COPTS) $*.c
+
+$(OBJP)PL_NetSync.o             : PL_NetSync.c $(INCS)
+        sc $(COPTS) $*.c
+
+$(OBJP)debug.o                  : debug.c $(INCS)
         sc $(COPTS) $*.c
 
 

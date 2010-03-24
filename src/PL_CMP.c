@@ -47,9 +47,14 @@ __saveds __asm int PL_CMPAbort
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
   struct PL_CMP cmp = { PLCMP_WAKEUP,0,0,0,0 };
+  KPRINTF(10, ("CMPAbort\n"));
 
   sock->lastError = PLERR_OKAY;
   cmp.flags = reason;
+  if(sock->serial->isUSB)
+  {
+      return(TRUE);
+  }
   return(-1!=PL_PADPWrite(socket,&cmp,sizeof(struct PL_CMP),PLPADP_DATA));
 }
 //<
@@ -76,11 +81,15 @@ __saveds __asm int PL_CMPInit
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
   struct PL_CMP cmp = { PLCMP_INIT,0,0,0,0 };
+  KPRINTF(10, ("CMPInit\n"));
 
   sock->lastError = PLERR_OKAY;
   cmp.baudrate = rate;
   if(rate!=9600) cmp.flags = PLCMPF_CHANGEBAUD;
-
+  if(sock->serial->isUSB)
+  {
+      return(TRUE);
+  }
   return(-1!=PL_PADPWrite(socket,&cmp,sizeof(struct PL_CMP),PLPADP_DATA));
 }
 //<
@@ -107,10 +116,14 @@ __saveds __asm int PL_CMPWakeUp
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
   struct PL_CMP cmp = { PLCMP_WAKEUP,0,PLCMPVER_1_0,0,0 };
+  KPRINTF(10, ("CMPWakeUp\n"));
 
   sock->lastError = PLERR_OKAY;
   cmp.baudrate = maxrate;
-
+  if(sock->serial->isUSB)
+  {
+      return(TRUE);
+  }
   return(-1!=PL_PADPWrite(socket,&cmp,sizeof(struct PL_CMP),PLPADP_WAKE));
 }
 //<
@@ -135,8 +148,13 @@ __saveds __asm int PL_CMPRead
 )
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
+  KPRINTF(10, ("CMPRead\n"));
 
   sock->lastError = PLERR_OKAY;
+  if(sock->serial->isUSB)
+  {
+      return(TRUE);
+  }
   return(-1!=PL_PADPRead(socket,cmp,sizeof(struct PL_CMP)));
 }
 //<

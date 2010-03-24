@@ -79,6 +79,11 @@ int OpenPalmSerial
 //              ser->serio->io_SerFlags &= ~SERF_7WIRE;
               if(!OpenDevice(device,unit,(struct IORequest *)ser->serio,0L))
               {
+                /* USB detection! */
+                if(strstr(device, "usbpalm.device"))
+                {
+                    ser->isUSB = TRUE;
+                }
                 ser->serio->IOSer.io_Command = SDCMD_SETPARAMS;
                 ser->serio->io_Baud          = baud;
                 ser->serio->io_StopBits      = 1;
@@ -161,7 +166,12 @@ __saveds __asm int PL_RawSetRate
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
   struct PL_Serial *ser = sock->serial;
+  KPRINTF(10, ("RawSetRate\n"));
   sock->lastError = PLERR_OKAY;
+  if(sock->serial->isUSB)
+  {
+      return(TRUE);
+  }
 
 #ifdef SERDEBUG
     Printf("SER: Change baud to %ld\n",baud);
@@ -218,6 +228,7 @@ __saveds __asm LONG PL_RawRead
 #ifdef SERDEBUG
   UWORD i;
 #endif
+  KPRINTF(10, ("RawRead\n"));
 
   sock->lastError = PLERR_OKAY;
 
@@ -262,7 +273,7 @@ __saveds __asm LONG PL_RawRead
       }
 #ifdef SERDEBUG
   for(i=0; i<length; i++)
-    Printf("A<-P %02lx\n",((UBYTE *)buffer)[i]);
+    Printf("A<-P %02lx (%ld/%ld)\n",((UBYTE *)buffer)[i], i, length);
 #endif
       if(ser->serio->IOSer.io_Error)              // Error?
       {
@@ -322,6 +333,7 @@ __saveds __asm LONG PL_RawWrite
 #ifdef SERDEBUG
   UWORD i;
 #endif
+  KPRINTF(10, ("RawWrite\n"));
 
   sock->lastError = PLERR_OKAY;
 
@@ -413,6 +425,8 @@ __saveds __asm int PL_RawFlush
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
   struct PL_Serial *ser  = sock->serial;
+  KPRINTF(10, ("RawFlush\n"));
+
   sock->lastError = PLERR_OKAY;
 
   ser->serio->IOSer.io_Command = CMD_FLUSH;

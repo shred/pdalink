@@ -118,6 +118,7 @@ struct PL_Serial
   struct timerequest *timerio;  /* IO structure for timer */
   struct Device *timerbase;     /* Base of timer device */
   ULONG  currBaud;              /* Current baud rate */
+  BOOL   isUSB;                 /* uses netsync protocol */
 };
 
 

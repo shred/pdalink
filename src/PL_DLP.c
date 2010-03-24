@@ -46,6 +46,7 @@ __saveds __asm void PL_DLPInit
 )
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
+  KPRINTF(10, ("DLPInit\n"));
   sock->dlpoffset = 0;
 }
 //<
@@ -69,6 +70,7 @@ __saveds __asm LONG PL_DLPWriteByte
 )
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
+  KPRINTF(10, ("DLPWriteByte\n"));
 
   *(sock->dlpbuffer+(sock->dlpoffset++)+6) = bdata;
   return sock->dlpoffset;
@@ -94,6 +96,7 @@ __saveds __asm LONG PL_DLPWriteWord
 )
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
+  KPRINTF(10, ("DLPWriteWord\n"));
 
   *((WORD *)(sock->dlpbuffer+sock->dlpoffset+6)) = wdata;
   sock->dlpoffset += 2;
@@ -120,6 +123,7 @@ __saveds __asm LONG PL_DLPWriteLong
 )
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
+  KPRINTF(10, ("DLPWriteLong\n"));
   *((LONG *)(sock->dlpbuffer+sock->dlpoffset+6)) = ldata;
   sock->dlpoffset += 4;
   return sock->dlpoffset;
@@ -147,6 +151,7 @@ __saveds __asm LONG PL_DLPWrite
 )
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
+  KPRINTF(10, ("DLPWrite\n"));
 
   CopyMem(packet,sock->dlpbuffer+sock->dlpoffset+6,length);
   sock->dlpoffset += length;
@@ -172,6 +177,7 @@ __saveds __asm LONG PL_DLPTstWrite
   register __d0 LONG length
 )
 {
+  KPRINTF(10, ("DLPTstWrite\n"));
   return(((struct PL_Socket *)socket)->dlpoffset+6+length <= 0xFFFF);
 }
 //<
@@ -201,6 +207,7 @@ __saveds __asm LONG PL_DLPSend
   LONG msglen = sock->dlpoffset;
   LONG pktlen;
   WORD errcode;
+  KPRINTF(10, ("DLPSend\n"));
 
   sock->lastError = PLERR_OKAY;
 
@@ -295,6 +302,7 @@ __saveds __asm LONG PL_DLPRead
 )
 {
   struct PL_Socket *sock = (struct PL_Socket *)socket;
+  KPRINTF(10, ("DLPRead\n"));
 
   if(buffer)
     CopyMem(sock->dlpbuffer+sock->readoffset+sock->dlpoffset , buffer, length);
@@ -324,6 +332,7 @@ __saveds __asm int DLP_OpenConduit
   register __a0 APTR socket
 )
 {
+  KPRINTF(10, ("DLPOpenConduit\n"));
   PL_DLPInit(socket);
   return(PL_DLPSend(socket,0x2E,0x00) != -1);
 }
@@ -347,6 +356,7 @@ __saveds __asm int DLP_EndOfSync
   register __d0 UWORD status
 )
 {
+  KPRINTF(10, ("DLPEndOfSync\n"));
   PL_DLPInit(socket);
   PL_DLPWriteWord(socket,(WORD)status);
   return(PL_DLPSend(socket,0x2F,0x20) != -1);
@@ -372,6 +382,7 @@ __saveds __asm int DLP_SetSysTime
   register __a1 struct DLP_SysTime *time
 )
 {
+  KPRINTF(10, ("DLPSetSysTime\n"));
   PL_DLPInit(socket);
   PL_DLPWrite(socket,time,sizeof(struct DLP_SysTime));
   return(PL_DLPSend(socket,0x14,0x20) != -1);
@@ -396,6 +407,7 @@ __saveds __asm int DLP_GetSysTime
   register __a1 struct DLP_SysTime *time
 )
 {
+  KPRINTF(10, ("DLPGetSysTime\n"));
   PL_DLPInit(socket);
   if(PL_DLPSend(socket,0x13,0x20) == -1) return(FALSE);
   PL_DLPRead(socket,time,sizeof(struct DLP_SysTime));
@@ -442,6 +454,7 @@ __saveds __asm int DLP_GetStorageInfo
     UBYTE NameManufBuffer[256];
   }
   sres;
+  KPRINTF(10, ("DLPGetStorageInfo\n"));
 
   PL_DLPInit(socket);
   PL_DLPWriteByte(socket,(BYTE)cardno);
@@ -486,6 +499,7 @@ __saveds __asm int DLP_GetSysInfo
 )
 {
   UBYTE len;
+  KPRINTF(10, ("DLPGetSysInfo\n"));
 
   PL_DLPInit(socket);
   if(PL_DLPSend(socket,0x12,0x20) == -1) return(FALSE);
@@ -526,6 +540,7 @@ __saveds __asm int DLP_GetDBInfo
   register __a1 struct DLP_DBInfo *info
 )
 {
+  KPRINTF(10, ("DLPGetDBInfo\n"));
   PL_DLPInit(socket);
   PL_DLPWriteByte(socket,(BYTE)flags);
   PL_DLPWriteByte(socket,(BYTE)cardno);
@@ -577,6 +592,7 @@ __saveds __asm LONG DLP_OpenDB
 )
 {
   UBYTE handle;
+  KPRINTF(10, ("DLPOpenDB\n"));
 
   PL_DLPInit(socket);
   PL_DLPWriteByte(socket,(BYTE)cardno);
@@ -611,6 +627,7 @@ __saveds __asm int DLP_DeleteDB
   register __a1 STRPTR name
 )
 {
+  KPRINTF(10, ("DLPDeleteDB\n"));
   PL_DLPInit(socket);
   PL_DLPWriteByte(socket,(BYTE)cardno);
   PL_DLPWriteByte(socket,0);
@@ -649,6 +666,7 @@ __saveds __asm LONG DLP_CreateDB
 )
 {
   UBYTE handle;
+  KPRINTF(10, ("DLPCreateDB\n"));
 
   PL_DLPInit(socket);
   PL_DLPWriteLong(socket,(LONG)creator);
@@ -683,6 +701,7 @@ __saveds __asm int DLP_CloseDB
   register __d0 LONG handle
 )
 {
+  KPRINTF(10, ("DLPCloseDB\n"));
   PL_DLPInit(socket);
   PL_DLPWriteByte(socket,(BYTE)handle);
   return(PL_DLPSend(socket,0x19,0x20) != -1);
@@ -706,6 +725,7 @@ __saveds __asm int DLP_CloseAllDB
   register __a0 APTR socket
 )
 {
+  KPRINTF(10, ("DLPCloseAllDB\n"));
   PL_DLPInit(socket);
   return(PL_DLPSend(socket,0x19,0x21) != -1);
 }
@@ -728,6 +748,7 @@ __saveds __asm int DLP_ResetSystem
   register __a0 APTR socket
 )
 {
+  KPRINTF(10, ("DLPResetSystem\n"));
   PL_DLPInit(socket);
   return(PL_DLPSend(socket,0x29,0x00) != -1);
 }
@@ -752,6 +773,7 @@ __saveds __asm int DLP_AddSyncLogEntry
   register __a1 STRPTR entry
 )
 {
+  KPRINTF(10, ("DLPAddSyncLogEntry\n"));
   PL_DLPInit(socket);
   PL_DLPWrite(socket,entry,strlen(entry)+1);
   return(PL_DLPSend(socket,0x2A,0x20) != -1);
@@ -778,6 +800,7 @@ __saveds __asm LONG DLP_CountDBEntries
 )
 {
   UWORD entr;
+  KPRINTF(10, ("DLPCountDBEntries\n"));
 
   PL_DLPInit(socket);
   PL_DLPWriteByte(socket,(BYTE)handle);

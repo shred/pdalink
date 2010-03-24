@@ -210,7 +210,17 @@ struct PL_PADP_Header
 #define PLPADPF_LAST      (0x40)        /* Last packet */
 #define PLPADPF_MEMERROR  (0x20)        /* Receiver has not enough memory */
 
+/*--------------------------------------------------------------**
+**    NetSync Protocol
+*/
 
+/* NetSync Header structure */
+struct PL_NetSync_Header
+{
+  UBYTE  type;                          /* Type of Packet */
+  UBYTE  transID;                       /* current transaction ID */
+  ULONG  dataSize;                      /* payload */
+};                                      /* Data follows here */
 
 /*--------------------------------------------------------------**
 **    Serial Link Protocol

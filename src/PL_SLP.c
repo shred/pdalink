@@ -91,8 +91,13 @@ __saveds __asm LONG PL_SLPWrite
   UWORD i;
   UBYTE hdrsum;
   UWORD checksum;
+  KPRINTF(10, ("SLPWrite\n"));
 
   sock->lastError = PLERR_OKAY;
+  if(sock->serial->isUSB)
+  {
+      return(-1);
+  }
 
   /* Create signature */
   header->signature[0] = 0xBE;
@@ -165,8 +170,13 @@ __saveds __asm LONG PL_SLPRead
   UWORD  i;
   UWORD  readChecksum;
   UWORD  checksum;
+  KPRINTF(10, ("SLPRead\n"));
 
   sock->lastError = PLERR_OKAY;         // No error occured yet
+  if(sock->serial->isUSB)
+  {
+      return(-1);
+  }
 
   /* State machine: wait for header */
   if(PL_RawRead(socket,&read,1))
