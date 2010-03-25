@@ -1,4 +1,3 @@
-* Exec Offset Include Datei   auch für OS 3.0    28. 9.1992 *
 
 _EXECSupervisor         equ     -30
 _EXECExitIntr           equ     -36
@@ -142,3 +141,5 @@ exec            MACRO
 		ENDC
 		jsr     _EXEC\1(a6)
 		ENDM
+		
+*jEdit: :tabSize=8:indentSize=8:mode=assembly-m68k:

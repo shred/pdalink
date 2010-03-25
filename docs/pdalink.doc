@@ -167,21 +167,19 @@ pdalink.library/PL_Write
         · Do not assume a special value for TRUE. TRUE is anything except 0.
 
    COPYRIGHT
-        The pdalink.library is Copyright (C) 1998-99 by Richard Körber.
+        The pdalink.library is Copyright (C) 1998-2010 by Richard Körber.
         All rights reserved. Please read the main guide for further
         information and the copyright note.
 
-        pdalink.library is MailWare. You don't need to pay any fees, though
-        you must send me an e-mail if you use it.
+        For the latest release and source code, have a look at the pdalink
+        development page at:
+        
+          http://pdalink.shredzone.org
 
-        If it is used in commercial software (ShareWare is commercial as
-        well), you must provide me with a full featured and registered
-        release of your software, along with all future updates, as long
-        as you use the pdalink.library, and without any charge.
-
-        E-Mail:  rkoerber@gmx.de
-
-        WWW:     http://www.shredzone.de/
+        pdalink.library is Open Source Software and released under LGPLv3.
+        You can find a copy of the license at:
+        
+          http://www.gnu.org/licenses/lgpl.html
 
    TRADEMARKS
         Palm, PalmOS are trademarks of Palm Inc.

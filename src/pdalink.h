@@ -1,27 +1,27 @@
-/**
+/*
  * PdaLink -- Connect Palm with Amiga
  *
- * Main header
+ * Copyright (C) 1998-2010 Richard "Shred" Körber
+ *   http://pdalink.shredzone.org
  *
- * (C) 1998-2000 Richard Körber <rkoerber@gmx.de>
+ * This library is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation, either
+ * version 3 of the License, or (at your option) any later version.
  *
- *------------------------------------------------------------------
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+/**
+ * Main headers for pdalink.library.
  *
- * You must not use this source code to gain profit of any kind!
+ * @author Richard "Shred" Körber
  */
 
 #ifndef LIBRARIES_PDALINK_H
@@ -160,7 +160,6 @@ struct DLP_DBInfo
 #define DLPDBOF_READWRITE     (0xC0)
 
 
-
 /*--------------------------------------------------------------**
 **    Connection Management Protocol
 */
@@ -183,7 +182,6 @@ struct PL_CMP
 
 /* CMP Flags */
 #define PLCMPF_CHANGEBAUD (0x80)        /* Init: change baud rate */
-
 
 
 /*--------------------------------------------------------------**
@@ -210,6 +208,7 @@ struct PL_PADP_Header
 #define PLPADPF_LAST      (0x40)        /* Last packet */
 #define PLPADPF_MEMERROR  (0x20)        /* Receiver has not enough memory */
 
+
 /*--------------------------------------------------------------**
 **    NetSync Protocol
 */
@@ -221,6 +220,7 @@ struct PL_NetSync_Header
   UBYTE  transID;                       /* current transaction ID */
   ULONG  dataSize;                      /* payload */
 };                                      /* Data follows here */
+
 
 /*--------------------------------------------------------------**
 **    Serial Link Protocol

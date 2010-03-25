@@ -1,37 +1,29 @@
-/*********************************************************************
-**                                                                  **
-**        PdaTime         -- Set Amiga or Pilot system time         **
-**                                                                  **
-*********************************************************************/
 /*
-**  Copyright © 1998-2000 Richard Körber  --  All Rights Reserved
-**    E-Mail: rkoerber@gmx.de
-**    URL:    http://shredzone.home.pages.de
-**
-***************************************************************/
-/*
-**  This program is free software; you can redistribute it and/or modify
-**  it under the terms of the GNU General Public License as published by
-**  the Free Software Foundation; either version 2 of the License, or
-**  any later version.
-**
-**  This program is distributed in the hope that it will be useful,
-**  but WITHOUT ANY WARRANTY; without even the implied warranty of
-**  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-**  GNU General Public License for more details.
-**
-**  You should have received a copy of the GNU General Public License
-**  along with this program; if not, write to the Free Software
-**  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-**
-**  The author (Richard Körber) reserves the right to revoke the
-**  GNU General Public License whenever he feels that it is necessary,
-**  especially when he found out that the licence has been abused,
-**  ignored or violated, and without prior notice.
-**
-**  You must not use this source code to gain profit of any kind!
-**
-***************************************************************/
+ * PdaLink -- Connect Palm with Amiga
+ *
+ * Copyright (C) 1998-2010 Richard "Shred" Körber
+ *   http://pdalink.shredzone.org
+ *
+ * This library is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation, either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * Example application for setting the Amiga or Palm system time.
+ *
+ * @author Richard "Shred" Körber
+ */
+ 
 /*
 **  Compiles with SAS/C, e.g.
 **      sc PdaTime.c NOSTACKCHECK DATA=NEAR STRMER CPU=68060 OPT
