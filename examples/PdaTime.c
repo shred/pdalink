@@ -50,7 +50,7 @@
 #define  DATESTR      "7.1.2000"
 #define  COPYRIGHTSTR "2000"
 #define  EMAILSTR     "rkoerber@gmx.de"
-#define  URLSTR       "http://shredzone.home.pages.de"
+#define  URLSTR       "http://pdalink.shredzone.org"
 
 #define  NORMAL       "\2330m"
 #define  BOLD         "\2331m"
@@ -61,7 +61,7 @@
 
 static char ver[] = "$VER: PdaTime " VERSIONSTR " (" DATESTR ") " EMAILSTR;
 static char titletxt[] = \
-  BOLD "PdaTime " VERSIONSTR " (C) " COPYRIGHTSTR " Richard Körber -- all rights reserved" NORMAL "\n"
+  BOLD "PdaTime " VERSIONSTR " (C) " COPYRIGHTSTR " Richard Körber" NORMAL "\n"
   BOLD "  WARNING:" NORMAL " This is an early beta release. If you don't\n"
   "    know what this means, do " BOLD "NOT" NORMAL " use this program!\n\n";
 static char helptxt[] = \

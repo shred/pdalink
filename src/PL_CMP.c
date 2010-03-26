@@ -26,19 +26,13 @@
  
 #include "pdalink_glob.h"
 
-/*------------------------------------------------------**
-** Name:        PL_CMPAbort                       public
-**
-** Funktion:    CMP: Verbindung abbrechen
-**
-** Parameter:   socket    Socket für die Übertragung
-**              reason    Grund-Code
-** Ergebnis:    success   Erfolg (boolean)
-//>
-** Bemerkungen:
-**
-** Revision:     7. Juni 1998, 22:49:33
-*/
+/**
+ * Aborts a CMP connection.
+ *
+ * @param socket    Connection socket
+ * @param reason    Reason for the abortion
+ * @return success (boolean)
+ */
 __saveds __asm int PL_CMPAbort
 (
   register __a0 APTR socket,
@@ -57,22 +51,16 @@ __saveds __asm int PL_CMPAbort
   }
   return(-1!=PL_PADPWrite(socket,&cmp,sizeof(struct PL_CMP),PLPADP_DATA));
 }
-//<
 
-/*------------------------------------------------------**
-** Name:        PL_CMPInit                        public
-**
-** Funktion:    CMP: Verbindung herstellen
-**
-** Parameter:   socket    Socket für die Übertragung
-**              baud      Baudrate
-** Ergebnis:    success   Erfolg (boolean)
-//>
-** Bemerkungen: Die serielle Schnittstelle wird nicht
-**              auf die neue Baudrate gesetzt.
-**
-** Revision:     7. Juni 1998, 22:49:33
-*/
+/**
+ * Initializes a CMP connection.
+ * <p>
+ * Note that the serial device is not set to the new rate here.
+ *
+ * @param socket    Connection socket
+ * @param rate      Baud rate to be used
+ * @return success (boolean)
+ */
 __saveds __asm int PL_CMPInit
 (
   register __a0 APTR socket,
@@ -92,22 +80,16 @@ __saveds __asm int PL_CMPInit
   }
   return(-1!=PL_PADPWrite(socket,&cmp,sizeof(struct PL_CMP),PLPADP_DATA));
 }
-//<
 
-/*------------------------------------------------------**
-** Name:        PL_CMPWakeUp                      public
-**
-** Funktion:    CMP: Aufwecken
-**
-** Parameter:   socket    Socket für die Übertragung
-**              maxbaud   Maximale Baudrate
-** Ergebnis:    success   Erfolg (boolean)
-//>
-** Bemerkungen: Die serielle Schnittstelle wird nicht
-**              auf die neue Baudrate gesetzt.
-**
-** Revision:     7. Juni 1998, 23:00:59
-*/
+/**
+ * Wakes up a CMP connection.
+ * <p>
+ * Note that the serial device is not set to the new rate here.
+ *
+ * @param socket    Connection socket
+ * @param maxrate   Maximum rate to be used
+ * @return success (boolean)
+ */
 __saveds __asm int PL_CMPWakeUp
 (
   register __a0 APTR socket,
@@ -126,21 +108,14 @@ __saveds __asm int PL_CMPWakeUp
   }
   return(-1!=PL_PADPWrite(socket,&cmp,sizeof(struct PL_CMP),PLPADP_WAKE));
 }
-//<
 
-/*------------------------------------------------------**
-** Name:        PL_CMPRead                        public
-**
-** Funktion:    CMP: lesen
-**
-** Parameter:   socket    Socket für die Übertragung
-**              cmp       CMP-Struktur-Puffer
-** Ergebnis:    success   Erfolg (boolean)
-//>
-** Bemerkungen:
-**
-** Revision:     7. Juni 1998, 23:04:21
-*/
+/**
+ * Reads from the socket.
+ *
+ * @param socket    Connection socket
+ * @param cmp       CMP buffer
+ * @return success (boolean)
+ */
 __saveds __asm int PL_CMPRead
 (
   register __a0 APTR socket,
@@ -157,7 +132,5 @@ __saveds __asm int PL_CMPRead
   }
   return(-1!=PL_PADPRead(socket,cmp,sizeof(struct PL_CMP)));
 }
-//<
 
 
-/********************************************************************/

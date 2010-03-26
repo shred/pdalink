@@ -26,9 +26,6 @@
 
 #include "pdalink_glob.h"
 
-/*----------------------------------------------------------------
-** GLOBAL VARIABLES
-*/
 struct DOSBase       *DOSBase;
 struct Library       *UtilityBase;
 struct Library       *SysBase;
@@ -37,10 +34,11 @@ struct Library       *PdalinkBase;
 
 struct Global         global;
 
-
-/*----------------------------------------------------------------
-** InitGlobal   Initializes the global structure
-*/
+/**
+ * Initializes the global structure.
+ *
+ * @return success
+ */
 static int InitGlobal(void)
 {
   for(;;)
@@ -56,9 +54,9 @@ static int InitGlobal(void)
   return 0;                     // Failure
 }
 
-/*----------------------------------------------------------------
-** ExitGlobal   Frees global structure
-*/
+/**
+ * Frees the global structure.
+ */
 static void ExitGlobal(void)
 {
   struct RexxHandle *thisNode, *nextNode;
@@ -84,10 +82,9 @@ static void ExitGlobal(void)
   return;
 }
 
-
-/*----------------------------------------------------------------
-** LibExit      Finishes Library
-*/
+/**
+ * Finishes the library.
+ */
 __saveds __asm void LibExit(void)
 {
   ExitGlobal();
@@ -96,10 +93,13 @@ __saveds __asm void LibExit(void)
   if(RexxSysBase)   CloseLibrary(                  RexxSysBase);
 }
 
-
-/*----------------------------------------------------------------
-** LibInit      Initializes the Library
-*/
+/**
+ * Initializes the library.
+ *
+ * @param exec      Reference to exec
+ * @param base      Library base
+ * @return LibInit structure
+ */
 __saveds __asm struct Library *LibInit
 (
   register __a0 struct Library *exec,
@@ -122,6 +122,4 @@ __saveds __asm struct Library *LibInit
   LibExit();
   return(0);
 }
-
-/****************************************************************/
 

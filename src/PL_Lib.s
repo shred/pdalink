@@ -22,16 +22,12 @@
 * @author Richard "Shred" Körber
 *
 
-
-
 		INCLUDE exec/libraries.i
 		INCLUDE exec/initializers.i
 		INCLUDE exec/resident.i
 		INCLUDE exec/execbase.i
 		INCLUDE utility/hooks.i
-;		 INCLUDE lvo/exec.i
-    INCLUDE Work:Dev/68K/DevPac/includes/AmigaLVOs.s
-    INCLUDE Work:Dev/68K/DevPac/includes/Macros.lnk
+		INCLUDE lvo/exec.i
 		INCLUDE PL_Lib.i
 
 		SECTION text,CODE
@@ -154,7 +150,7 @@ libidstring     VSTRING
 	;-- Information for HexReaders... -------------;
 
 		VERS
-		dc.b    "  (C) 1998-2000 Richard Körber <rkoerber@gmx.de>, (C) 2004 Chris Hodges <chrisly@platon42.de>",13,10,0
+		dc.b    "  (C) 1998-2010 Richard Körber <rkoerber@gmx.de>, (C) 2004 Chris Hodges <chrisly@platon42.de>",13,10,0
 		even
 
 *-------------------------------------------------------*
@@ -329,8 +325,7 @@ LExpunge        movem.l d7/a5-a6,-(SP)
 	;-- Lib will be expunged ---------------;
 .expimmed       move.l  (plb_SegList,a5),d7     ;Get segment list
 		move.l  a5,a1                   ;Remove from list
-    CALL    Remove
-;		 exec    Remove
+		exec    Remove
 	;-- Perform own exit method ------------;
 		jsr     _LibExit
 	;-- Release memory ---------------------;
@@ -339,8 +334,7 @@ LExpunge        movem.l d7/a5-a6,-(SP)
 		move    (LIB_NEGSIZE,a5),d0
 		sub.l   d0,a1
 		add     (LIB_POSSIZE,a5),d0
-    CALL    FreeMem
-;		 exec    FreeMem
+		exec    FreeMem
 	;-- Done -------------------------------;
 		move.l  d7,d0
 .exit           movem.l (SP)+,d7/a5-a6
@@ -379,3 +373,4 @@ EndCode:
 
 		END OF SOURCE
 
+*jEdit: :tabSize=8:indentSize=8:mode=assembly-m68k:

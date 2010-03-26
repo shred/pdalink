@@ -26,22 +26,15 @@
  
 #include "pdalink_glob.h"
 
-/*------------------------------------------------------**
-** Name:        PL_NetSyncWrite                   public
-**
-** Funktion:    Verschickt ein NetSync-Paket
-**
-** Parameter:   socket    Socket für die Übertragung
-**              buffer    zu übertragener Puffer
-**              length    Länge des Puffers
-**              type      Zu übertragener Typ
-** Ergebnis:    length    Geschriebene Bytes, oder
-**                        -1: Fehler
-//>
-** Bemerkungen:
-**
-** Revision:    31. Mai 1998, 21:14:30
-*/
+/**
+ * Sends a NetSync packet.
+ *
+ * @param socket        Connection socket
+ * @param buffer        Buffer to be transmitted
+ * @param length        Buffer length
+ * @param type          Packet type
+ * @return Number of bytes written, or -1: error
+ */
 __saveds __asm LONG PL_NetSyncWrite
 (
   register __a0 APTR socket,
@@ -92,23 +85,15 @@ __saveds __asm LONG PL_NetSyncWrite
 
   return(rlen);
 }
-//<
 
-/*------------------------------------------------------**
-** Name:        PL_NetSyncRead                       public
-**
-** Funktion:    Holt ein NetSync-Paket
-**
-** Parameter:   socket    Socket für die Übertragung
-**              buffer    Empfangspuffer
-**              length    Pufferlänge
-** Ergebnis:    length    Länge des empfangenen Puffers,
-**                        -1: Fehler
-//>
-** Bemerkungen:
-**
-** Revision:     1. Juni 1998, 17:33:41
-*/
+/**
+ * Reads a NetSync packet.
+ *
+ * @param socket        Connection socket
+ * @param buffer        Buffer for reading
+ * @param length        Buffer length
+ * @return Bytes actually read, or -1: error
+ */
 __saveds __asm LONG PL_NetSyncRead
 (
   register __a0 APTR socket,
@@ -193,9 +178,10 @@ __saveds __asm LONG PL_NetSyncRead
 
   return(rlen);                         // Packets received
 }
-//<
 
-/* /// "Ritual Bytes" */
+/*
+ * "Ritual Bytes"
+ */
 #if 0
 static UBYTE ritual_resp1[] =
 {
@@ -297,8 +283,13 @@ static UBYTE ritual_resp3[] = {
 	0x00, 0x00,
 };
 #endif
-/* \\\ */
 
+/**
+ * Performs the NetSync server ritual.
+ *
+ * @param socket        Connection socket
+ * @return success
+ */
 BOOL PL_NetSyncServerRitual(struct PL_Socket *socket)
 {
     APTR tmpbuf;
@@ -353,6 +344,5 @@ BOOL PL_NetSyncServerRitual(struct PL_Socket *socket)
     FreeVec(tmpbuf);
     return(TRUE);
 }
-/* \\\ */
 
-/********************************************************************/
+
