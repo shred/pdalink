@@ -1,9 +1,28 @@
 /*
-**      $VER: pdalink_pragmas.h 1.1 (26.2.1999)
-**
-**      (C) Copyright 1998-99 Richard Körber
-**          All Rights Reserved
-*/
+ * PdaLink -- Connect Palm with Amiga
+ *
+ * Copyright (C) 1998-2010 Richard "Shred" Körber
+ *   http://pdalink.shredzone.org
+ *
+ * This library is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation, either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * Pragmas.
+ *
+ * @author Richard "Shred" Körber
+ */
 
 /*pragma libcall PdalinkBase PL_Reserved 1e 0*/
 #pragma libcall PdalinkBase PL_RawRead 24 09803

@@ -1,7 +1,7 @@
 @database PdaLink.guide
 @author "Richard Körber"
-@(c) "1998-2000 Richard Körber - all rights reserved"
-@$VER: PdaLink.guide V2.0 (7.1.2000)
+@(c) "1998-2010 Richard Körber"
+@$VER: PdaLink.guide V2.2 (26.3.2010)
 @wordwrap
 
 @Node Main "Table Of Contents"
@@ -10,11 +10,11 @@
                       |_) | \\  /\\    |   | |\\ | |_/
                       |   |_/ /--\\   |__ | | \\| | \\
 
-                        Amiga connects to the Palm          v2.0
+                        Amiga connects to the Palm          v2.2
 __________________________________________________________________________
 @{FG SHINE}¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯@{FG TEXT}
 
-
+                                                                           
                           @{B}-- TABLE OF CONTENTS --@{UB}
 
 
@@ -35,7 +35,7 @@ __________________________________________________________________________
 __________________________________________________________________________
 @{FG SHINE}¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯@{FG TEXT}
 
-  PdaLink © 1998-2000 Richard Körber -- All Rights Reserved -- FreeWare
+  PdaLink © 1998-2010 Richard "Shred" Körber -- LGPLv3 licensed
 
 @EndNode
 @Node Einleitung "Introduction"
@@ -82,7 +82,7 @@ features.
 I hope you will enjoy it as much as I do!
 
 
-                                                Richard Körber
+                                           Richard Körber, in 1998
 
 @EndNode
 @Node Required "Requirements"
@@ -117,6 +117,9 @@ PdaLink requires:
      to use the 8n1.device for better performance. BaudBandit.device
      should work as well, but this is untested.
 
+   · Thanks to a patch by Chris Hodges, you can also connect your
+     Palm via USB and Poseidon.
+   
 @EndNode
 @Node Copyright "Copyright"
 
@@ -124,125 +127,18 @@ PdaLink requires:
 __________________________________________________________________________
 @{FG SHINE}¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯@{FG TEXT}
 
-Please read the following parts carefully.
-
-If you do not agree to these Copyright notes, you must delete this
-archive and all related files.
-
-__________________________________________________________________________
-@{FG SHINE}¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯@{FG TEXT}
-
 @{B} COPYRIGHT @{UB}
 @{B}===========@{UB}
 
-   @{I}NOTE:@{UI} You accept the following terms by starting the software,
-even for a test drive only.
+   PdaLink is Copyright © 1998-2010 Richard "Shred" Körber.
+   
+   The software is released as Open Source Software. The LGPLv3 (Lesser
+Gnu Public License Version 3 or later) license applies to the source
+code.
 
-   PdaLink is Copyright © 1998-2000 Richard Körber. All rights reserved.
+   For the source code and the latest packages, visit the development
+web site at: http://pdalink.shredzone.org
 
-   You only have the right to use the software, but no rights on
-the software itself. Disassembling, resourcing and all other ways
-of reverse engineering is forbidden.
-
-   For the example source codes the GNU General Public Licence applies.
-A copy of the GPL should be part of this packet. Note that the GNU General
-Public Licence only applies where explicitly mentioned. All other files
-(as e.g. the library itself, or this documentation) are @{B}NOT@{UB} under GPL!
-
-
-@{B} FREEWARE @{UB}
-@{B}----------@{UB}
-
-   PdaLink is FreeWare. You are allowed to use the packet without
-paying a fee or similar to the author.
-
-
-@{B} DEVELOPERS @{UB}
-@{B}------------@{UB}
-
-   Public Domain and FreeWare developers are allowed to use PdaLink for
-free.
-
-   Commercial Developers (including ShareWare developers) must send me
-a free copy of the software that uses PdaLink, as well as all updates
-and upgrades that uses PdaLink. The software must be registered to me
-and must be fully functional.
-
-   To mention it once again: ShareWare is also considered as commerical!
-
-   You are allowed to put the pdalink.library to your software packet,
-as long as you state in your documentation that you are using PdaLink
-by Richard Körber, and that updates can be found at this URL:
-
-   http://shredzone.home.pages.de
-
-
-@{B} COPYING @{UB}
-@{B}---------@{UB}
-
-   You can copy the packet as long as it remains entire and unchanged.
-
-   You are allowed to compress the packet using a customary compression
-software (as lha, lzh, lzx, dms). You must not compress single files of
-the packet (e.g. PowerPacker or Imploder).
-
-
-@{B} DISTRIBUTION @{UB}
-@{B}--------------@{UB}
-
-   You must not exceed an usual price on the market for your working
-and material. This means a maximum of 5 DM (or the equivalent amount
-in other currencies) for disks and 35 DM for CD-ROMs containing a PD
-software collection.
-
-   I explicitly permit the distribution via AmiNet, Meeting Pearls
-and other well-known PD series.
-
-   I explicitly forbid 3Com to advertise with the existence of this
-software.
-
-
-@{B} LIABILITY @{UB}
-@{B}-----------@{UB}
-
-   You are using the program as it is, with all flaws, and on your
-own risk! I grant no warranty for the software meeting a special
-purpose. This software may cause financial damage or harm people.
-
-   This software could also:
-
-    · change, delete or invalidate data on your Palm
-    · destroy the Palm, the cradle or the Amiga
-    · void the warranty of the Palm
-
-   Please consider this anytime. If you have important data on your
-Palm, make sure to backup it using original 3Com software.
-
-
-@{B} LIMITATIONS @{UB}
-@{B}-------------@{UB}
-
-   You are not allowed to use this software and its results
-
-     · for fascist or military purposes, including the transfer
-       of appropriate software and data
-     · if your Palm contains critical data, or if people's life
-       or property relies on the Palm
-     · if you do not agree to the copyright note
-
-   In this case you must delete the software and all related,
-transferred, received and generated files immediately!
-
-
-@{B} COPYRIGHTS AND TRADEMARKS @{UB}
-@{B}---------------------------@{UB}
-
-Palm, Palm III and HotSync are Trademarks or Registered
-Trademarks of Palm Inc. respectively
-
-Amiga is a trademark of it's current owner. ;->
-
-All other copyrights and trademarks are held by their owners.
 
 @EndNode
 @Node Installation "Installation"
@@ -412,8 +308,8 @@ contribute. This is necessary to keep the list spam free.
 You can unsubscribe anytime, just send another mail to
 @{FG FILL}amiga-pda-unsubscribe@yahoogroups.com@{FG TEXT} .
 
-BTW: EGroups will not sell your E-Mail address, neither will I. Please
-inform yourself about the privacy policy at @{FG FILL}http://www.egroups.com@{FG TEXT} .
+The list has a very low traffic, but it still exists.
+
 
 @EndNode
 @Node Adresse "Address"
@@ -429,78 +325,14 @@ You can reach me through one of the following ways:
 
    Use e-mails if ever possible. My address is:
 
-        shred@shredzone.de
-
-   If, for some reasons, you should have trouble to contact me under
-this address, you can also write to:
-
-        rkoerber@gmx.de
-        shred@web.de
-
-   Please do not send mails larger than 40KB without prior permission.
-If you should have serious trouble reaching me, check my web page for
-other e-mail addresses.
-
-
-@{B} SNAIL MAIL @{UB}
-@{B}------------@{UB}
-
-   If you do not have an e-mail account, you may also write a snail mail.
-Include a preformatted floppy disk and sufficient stamps if you want to
-get an update this way!
-
-        Richard Körber
-        Überm Rost 13
-        51465 Bergisch Gladbach
-        Germany
-
+        amiga@shredzone.de
 
 @{B} WORLD WIDE WEB @{UB}
 @{B}----------------@{UB}
 
-   Updates are available through my web page. URL:
+   Updates are available through the project's web site at:
 
-        http://www.shredzone.de
-
-   Also, have a look at Amiga-PDA. It is a place where Amiga Palm
-   users can come together:
-
-        http://amigapda.shredzone.de
-
-
-@{B} SUPPORT BBS @{UB}
-@{B}----------------@{UB}
-
-   My support BBS Eratosthenes went offline on January 3rd, 2000.
-There is no other official support BBS.
-
-
-@{B} PRETTY GOOD PRIVACY @{UB}
-@{B}---------------------@{UB}
-
-   If you feel that way, you may also use PGP (note that the use of
-PGP is restricted in some countries). My PGP public key is attached
-below.
-
-__________________________________________________________________________
-@{FG SHINE}¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯@{FG TEXT}
-
-Type Bits/KeyID    Date       User ID
-pub  1024/3D5D331D 1997/01/08 Richard Koerber <shred@chessy.aworld.de>
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-Version: 2.6.3i
-
-mQCNAjLTMucAAAEEAOMY/3jzWBFV2Annpc6/VPhZQqF81btsqjyRR670uOELH+iO
-PXkrXX7IEo1vtNbKAc/MKDkcn2p4g5159yK2OoZkoqFsCs1JXzFLVfAM41tvaNG0
-RTibFJAYCZ03umli5q4EtCj1DCMMeZGzmyAO9mpfuyIC+k6qu/NEvrU9XTMdAAUR
-tChSaWNoYXJkIEtvZXJiZXIgPHNocmVkQGNoZXNzeS5hd29ybGQuZGU+iQCVAwUQ
-M0R4IfNEvrU9XTMdAQGe5gQAizTK/KmKymt5GtQQL1PW7m7tmZYBqglwtbSf7RBF
-fnntdkyeTQvRlbfjSAKjMYD0ZV34JtjMPJrRifIF6J6abSMQ1xT8IrEpyV8JrRcW
-Tjb4YEz+qEqo0Pj+l/87fqez1vUpTz19C5R5KNqHBk7/icCBGKuoLGtAmR6oifj4
-PKc=
-=GI6y
------END PGP PUBLIC KEY BLOCK-----
+        http://pdalink.shredzone.org
 
 @EndNode
 @Node FAQ "FAQ"
@@ -541,10 +373,19 @@ __________________________________________________________________________
 __________________________________________________________________________
 @{FG SHINE}¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯@{FG TEXT}
 
+V2.2     (26.03.2010)
+        · Maintenance release. Brought the documentation up to date.
+          Announced the new development site at
+          http://pdalink.shredzone.org
+
+V2.1     (15. 6.2004)
+        · Chris Hodges added a patch to connect to Palm devices via
+          USB by using Poseidon.
+        
 V2.0     (17. 7.2001)
-        · PalmLink is violating Palm Inc. trademarks. I have renamed
+        · PalmLink was violating Palm Inc. trademarks. I have renamed
           the library to pdalink, and corrected all ARexx function
-          names and ENV variables. I am sorry for this inconveniences.
+          names and ENV variables. I am sorry for the inconvenience.
 
 V2.0     ( 7. 1.2000)
         · Millennium release :-)
@@ -613,8 +454,6 @@ I also want to credit:
   @{B} Kenneth Albanowski @{UB} for pilot-link (a packet for Un*x). It helped me
         a LOT, though my library was written from the scratch new.
 
-  @{B} EGroups @{UB}            for providing free mailing lists
-
   @{B} Frank Wille @{UB}        for PhxAss, the best FreeWare assembler available
 
   @{B} Dietmar Eilert @{UB}     for his great Editor GoldED
@@ -625,7 +464,7 @@ __________________________________________________________________________
 @{FG SHINE}¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯@{FG TEXT}
 
             //
-        \\\\ //   -- Amiga - Cow inside --
+        \\\\ //   -- Amiga - Dream Machine --
          \\X/
 
 @EndNode

@@ -34,12 +34,12 @@ PL_LIB_I        SET     -1
 *--- REVISION CONTROL SYSTEM -------------------------------------------*
 
 VERSION         EQU     2
-REVISION        EQU     1
+REVISION        EQU     2
 VSTRING         MACRO
-		dc.b    'pdalink 2.1 (15.06.2004)',13,10,0
+		dc.b    'pdalink 2.2 (26.03.2010)',13,10,0
 		ENDM
 VERS            MACRO
-		dc.b    'pdalink 2.1 (15.06.2004)'
+		dc.b    'pdalink 2.2 (26.03.2010)'
 		ENDM
 PRGNAME         MACRO
 		dc.b    'pdalink.library'
@@ -61,3 +61,4 @@ PLLF_DELEXP     EQU     1<<PLLB_DELEXP
 
 *************************************************************************
 
+*jEdit: :tabSize=8:indentSize=8:mode=assembly-m68k:
