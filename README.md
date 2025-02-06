@@ -8,7 +8,7 @@ PdaLink is an Amiga library that connects a Palm PDA with your Amiga. It's a ful
 * Comes with an ARexx interface so you can connect your PDA using ARexx scripts.
 * With all include files (for Assembler, Basic, C and E).
 * LGPL licensed, open source.
-* Source Code available at [GitHub](https://github.com/shred/pdalink).
+* Source Code available at [Codeberg](https://codeberg.org/shred/pdalink).
 
 ## License
 
